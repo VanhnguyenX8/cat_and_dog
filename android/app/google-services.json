@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "809824995042",
+    "project_id": "xgame-cat-and-dog",
+    "storage_bucket": "xgame-cat-and-dog.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809824995042:android:bd04b831a615f0a189c0bb",
+        "android_client_info": {
+          "package_name": "xgame.studio.cat_and_dog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBETB0NljVMY9_fIWlRfpmYaeB7K0GRzcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

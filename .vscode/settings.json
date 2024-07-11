@@ -1,0 +1,21 @@
+{
+    "dart.lineLength": 150,
+    "[dart]": {
+      "editor.rulers": [
+        150
+      ],
+      // "editor.codeActionsOnSave": {
+      //   "source.fixAll": true
+      // },
+    },
+    "[typescript]": {
+      "editor.tabSize": 2
+    },
+    "[javascript]": {
+      "editor.tabSize": 2
+    },
+    "[json]": {
+      "editor.tabSize": 2
+    },
+  }
+  
