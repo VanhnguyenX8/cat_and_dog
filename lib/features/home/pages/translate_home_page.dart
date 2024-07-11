@@ -3,6 +3,7 @@ import 'package:cat_and_dog/features/bloc/app_color_bloc.dart';
 import 'package:cat_and_dog/features/home/pages/widgets/cat_home_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 import 'widgets/dog_home_widget.dart';
 
@@ -46,12 +47,11 @@ class _TranslateHomePageState extends State<TranslateHomePage> with SingleTicker
       child: BlocBuilder<AppColorBLoc, AppColorState>(builder: (context, state) {
         return Column(
           children: [
+            const Align(alignment: Alignment.topRight, child: Icon(Icons.settings)),
+            const Gap(36),
             Container(
               height: 45,
-              decoration: BoxDecoration(
-                color: state.color,
-                borderRadius: BorderRadius.circular(25.0),
-              ),
+              decoration: BoxDecoration(color: state.color, borderRadius: BorderRadius.circular(25.0)),
               child: TabBar(
                 controller: _tabController,
                 indicator: BoxDecoration(borderRadius: BorderRadius.circular(20.0), color: Colors.white),
@@ -61,13 +61,12 @@ class _TranslateHomePageState extends State<TranslateHomePage> with SingleTicker
                 dividerHeight: 0.0,
                 tabs: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 7.0),
                     decoration: BoxDecoration(border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(20.0)),
                     child: const Tab(text: 'Cat'),
                   ),
                   Container(
-                    margin: const EdgeInsets.all(4.0),
-                    padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 5.0),
+                    padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 7.0),
                     decoration: BoxDecoration(border: Border.all(color: Colors.white), borderRadius: BorderRadius.circular(20.0)),
                     child: const Tab(text: 'Dog'),
                   ),
@@ -75,12 +74,7 @@ class _TranslateHomePageState extends State<TranslateHomePage> with SingleTicker
               ),
             ),
             // tab bar view here
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: const [CatHomeWidget(), DogHomeWidget()],
-              ),
-            ),
+            Expanded(child: TabBarView(controller: _tabController, children: const [CatHomeWidget(), DogHomeWidget()])),
             Center(child: AdManager().getBannerAdWidget()),
           ],
         );

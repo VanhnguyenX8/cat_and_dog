@@ -4,6 +4,7 @@ import 'package:cat_and_dog/features/dogs/dogs.dart';
 import 'package:cat_and_dog/features/home/data/data.dart';
 import 'package:cat_and_dog/features/home/model/model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:just_audio/just_audio.dart';
@@ -134,7 +135,9 @@ class _DogPageState extends State<DogPage> with WidgetsBindingObserver {
               width: double.infinity,
               height: 48,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(28), color: color),
-              child: Center(child: Text(text, style: const TextStyle(color: Colors.white))),
+              child: Row(
+                children: [const Gap(80), Text(text, style: const TextStyle(color: Colors.white))],
+              ),
             ),
           ),
           Positioned(child: Image.asset(image, width: 60, height: 60, fit: BoxFit.cover)),
@@ -155,21 +158,23 @@ class _DogPageState extends State<DogPage> with WidgetsBindingObserver {
         childAspectRatio: 0.7,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return TextButton(
-          onPressed: () => changeAudio(dogs[index].audio),
-          child: Column(
-            children: [
-              Container(
-                width: 100,
-                height: 100,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: const Color(0xFFFFF4BD)),
-                child: Image.asset(fit: BoxFit.contain, dogs[index].img),
+        return Column(
+          children: [
+            IconButton(
+              style: IconButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                backgroundColor: const Color(0xFFFFC7CB),
+                iconSize: 100,
+                padding: const EdgeInsets.all(5),
+                maximumSize: const Size(200, 200),
+                minimumSize: const Size(100, 100),
               ),
-              const Gap(5),
-              Text(dogs[index].title, style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400)),
-            ],
-          ),
+              onPressed: () => changeAudio(dogs[index].audio),
+              icon: Image.asset(fit: BoxFit.contain, dogs[index].img, width: 67, height: 80),
+            ),
+            const Gap(5),
+            Text(dogs[index].title, style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400)),
+          ],
         );
       },
     );

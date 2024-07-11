@@ -87,7 +87,6 @@ class _AppState extends State<App> {
           ErrorWidget.builder = (details) {
             Widget? error;
             final exception = details.exception;
-
             /// hotfix hide adwidget render when release
             if (!kDebugMode && exception is FlutterError) {
               final String message = exception.message;
@@ -158,13 +157,13 @@ class _LandingPageState extends State<LandingPage> {
     const content = SplashPage();
     return BlocConsumer<StorageBLoc, StorageState>(
       listener: ((context, state) {
-        // Navigator.pushNamed(context, Routers.splash);
-        if (state.status == StorageStatus.successNotIntro) {
-          Navigator.pushNamed(context, Routers.home);
-        }
-        if (state.status == StorageStatus.successIntro) {
-          Navigator.pushNamed(context, Routers.splash);
-        }
+        Navigator.pushNamed(context, Routers.splash);
+        // if (state.status == StorageStatus.successNotIntro) {
+        //   Navigator.pushNamed(context, Routers.home);
+        // }
+        // if (state.status == StorageStatus.successIntro) {
+        //   Navigator.pushNamed(context, Routers.splash);
+        // }
       }),
       builder: (context, state) {
         return content;

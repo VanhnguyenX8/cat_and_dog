@@ -32,6 +32,7 @@ abstract class CommonModule {
 
   @singleton
   DogRepo dogRepo() => DogRepo();
-   @singleton
+  
+  @singleton
   StorageRepo storageRepo() => StorageRepoIpml();
 }

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 import 'package:gap/gap.dart';
-
-enum Action { people, cat }
 
 class DogHomeWidget extends StatefulWidget {
   const DogHomeWidget({super.key});
@@ -19,8 +18,8 @@ class _DogHomeWidgetState extends State<DogHomeWidget> {
   @override
   void initState() {
     _speechToText = SpeechToText();
-    // context.read<AppColorBLoc>().add(AppColorFetch(color: const Color(0xFFFDEB94)));
     _initSpeech();
+    // context.read<AppColorBLoc>().add(AppColorFetch(color: const Color(0xFFFF949B)));
     super.initState();
   }
 
@@ -55,56 +54,95 @@ class _DogHomeWidgetState extends State<DogHomeWidget> {
               onPressed: _speechToText.isNotListening ? _startListening : _stopListening,
               tooltip: 'Translate',
               iconSize: 100,
-              icon: Icon(_speechToText.isNotListening ? Icons.mic_off : Icons.mic)),
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(25.0),
+              icon: _speechToText.isNotListening ? SvgPicture.asset("assets/svg/mic_active.svg") : SvgPicture.asset("assets/svg/mic.svg")),
+          if (_speechToText.isListening || _lastWords != '')
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25.0),
+              ),
+              child: Text(
+                (_speechToText.isListening)
+                    ? _lastWords
+                    : _speechEnabled
+                        ? 'Voice -> $_lastWords'
+                        : 'voice',
+              ),
             ),
-            child: Text(
-              _speechToText.isListening
-                  ? _lastWords
-                  : _speechEnabled
-                      ? 'Voice -> $_lastWords'
-                      : 'voice',
-            ),
-          ),
           const Gap(69),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
-                width: size.width / 2.5,
-                padding: const EdgeInsets.fromLTRB(29, 18, 28, 28),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), spreadRadius: 0, blurRadius: 10, offset: const Offset(0, 0))],
-                ),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Image.asset("assets/home/translate/translate_screen_1.png"),
-                      const Text('Long press to record voice', textAlign: TextAlign.center),
-                    ],
+              GestureDetector(
+                onLongPressStart: (details) {
+                  if (_speechToText.isNotListening) {
+                    _startListening();
+                  }
+                },
+                onLongPressEnd: (details) {
+                  if (_speechToText.isListening) {
+                    _stopListening();
+                  }
+                },
+                child: Container(
+                  width: size.width / 2.7,
+                  height: size.width / 2.7,
+                  padding: const EdgeInsets.fromLTRB(29, 18, 28, 18),
+                  constraints: const BoxConstraints(minHeight: 155, minWidth: 155, maxHeight: 200, maxWidth: 200),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), spreadRadius: 0, blurRadius: 10, offset: const Offset(0, 0))],
+                  ),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/home/translate/translate_screen_1.png", width: 60, height: 78),
+                        const Text(
+                          'Long press to record voice',
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                width: size.width / 2.5,
-                padding: const EdgeInsets.fromLTRB(29, 18, 28, 28),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), spreadRadius: 0, blurRadius: 10, offset: const Offset(0, 0))],
-                ),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Image.asset("assets/home/translate/translate_screen_2.png"),
-                      const Text('Long press to record voice', textAlign: TextAlign.center),
-                    ],
+              GestureDetector(
+                onLongPressStart: (details) {
+                  if (_speechToText.isNotListening) {
+                    _startListening();
+                  }
+                },
+                onLongPressEnd: (details) {
+                  if (_speechToText.isListening) {
+                    _stopListening();
+                  }
+                },
+                child: Container(
+                  width: size.width / 2.7,
+                  height: size.width / 2.7,
+                  padding: const EdgeInsets.fromLTRB(29, 18, 28, 18),
+                  constraints: const BoxConstraints(minHeight: 155, minWidth: 155, maxHeight: 200, maxWidth: 200),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), spreadRadius: 0, blurRadius: 10, offset: const Offset(0, 0))],
+                  ),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Image.asset("assets/home/translate/translate_screen_3.png", width: 60, height: 78),
+                        const Text(
+                          'Long press to record voice',
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               )

@@ -135,7 +135,9 @@ class _CatPageState extends State<CatPage> with WidgetsBindingObserver {
               width: double.infinity,
               height: 48,
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(28), color: color),
-              child: Center(child: Text(text, style: const TextStyle(color: Colors.white))),
+              child: Row(
+                children: [const Gap(80), Text(text, style: const TextStyle(color: Colors.white))],
+              ),
             ),
           ),
           Positioned(child: Image.asset(image, width: 60, height: 60, fit: BoxFit.cover)),
@@ -156,21 +158,23 @@ class _CatPageState extends State<CatPage> with WidgetsBindingObserver {
         childAspectRatio: 0.7,
       ),
       itemBuilder: (BuildContext context, int index) {
-        return TextButton(
-          onPressed: () => changeAudio(dogs[index].audio),
-          child: Column(
-            children: [
-              Container(
-                width: 100,
-                height: 100,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: const Color(0xFFFFC7CB)),
-                child: Image.asset(fit: BoxFit.contain, cats[index].img),
+        return Column(
+          children: [
+            IconButton(
+              style: IconButton.styleFrom(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                backgroundColor: const Color(0xFFFFC7CB),
+                iconSize: 100,
+                padding: const EdgeInsets.all(5),
+                maximumSize: const Size(200, 200),
+                minimumSize: const Size(100, 100),
               ),
-              const Gap(5),
-              Text(cats[index].title, style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400)),
-            ],
-          ),
+              onPressed: () => changeAudio(cats[index].audio),
+              icon: Image.asset(fit: BoxFit.contain, cats[index].img, width: 67, height: 80),
+            ),
+            const Gap(5),
+            Text(cats[index].title, style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w400)),
+          ],
         );
       },
     );

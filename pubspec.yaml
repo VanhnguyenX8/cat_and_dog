@@ -144,7 +144,6 @@ flutter:
   assets:
     - assets/svg/
     - assets/home/
-    - assets/icons/
     - assets/intro/
     - assets/audio/
     - assets/home/cat/

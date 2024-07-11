@@ -1,4 +1,4 @@
-import 'dart:async';
+// import 'dart:async';
 
 import 'package:cat_and_dog/features/bloc/app_color_bloc.dart';
 import 'package:cat_and_dog/features/bloc/storage_bloc.dart';
@@ -6,6 +6,7 @@ import 'package:cat_and_dog/features/cats/page/cat_page.dart';
 import 'package:cat_and_dog/features/dogs/dogs.dart';
 import 'package:cat_and_dog/features/home/pages/translate_home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -38,14 +39,15 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     _tabController = TabController(length: 2, vsync: this);
     MobileAds.instance.initialize();
     final isIntro = context.read<StorageBLoc>().state.isIntro;
-    if (isIntro != null) {
-      _loadInterstitialAd();
-      Timer(const Duration(seconds: 5), () {
-        if (_isInterstitialAdReady) {
-          _interstitialAd.show();
-        }
-      });
-    }
+    //TODO: open ads
+    // if (isIntro != null) {
+    //   _loadInterstitialAd();
+    //   Timer(const Duration(seconds: 5), () {
+    //     if (_isInterstitialAdReady) {
+    //       _interstitialAd.show();
+    //     }
+    //   });
+    // }
     super.initState();
   }
 
@@ -83,12 +85,13 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           // backgroundColor: screenCatColor,
           backgroundColor: state.color,
           appBar: AppBar(
+            toolbarHeight: 0,
+            systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: state.color),
+            elevation: 0.0,
             backgroundColor: state.color,
             automaticallyImplyLeading: false,
           ),
-          body: Center(
-            child: _widgetOptions.elementAt(_selectedIndex),
-          ),
+          body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
           bottomNavigationBar: Container(
             margin: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
             decoration: BoxDecoration(

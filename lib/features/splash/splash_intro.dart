@@ -31,23 +31,26 @@ class _SplashIntroState extends State<SplashIntro> with TickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      color: Colors.white,
-      height: size.width,
-      width: size.height,
-      child: Stack(
-        children: [
-          PageView(
-            controller: _pageViewController,
-            onPageChanged: _handlePageViewChanged,
-            children: const <Widget>[SplashIntro1(), SplashIntro2()],
-          ),
-          PageIndicator(
-            tabController: _tabController,
-            currentPageIndex: _currentPageIndex,
-            onUpdateCurrentPageIndex: _updateCurrentPageIndex,
-          ),
-        ],
+    return Scaffold(
+      appBar: null,
+      body: Container(
+        color: Colors.white,
+        // height: size.width,
+        // width: size.height,
+        child: Stack(
+          children: [
+            PageView(
+              controller: _pageViewController,
+              onPageChanged: _handlePageViewChanged,
+              children: const <Widget>[SplashIntro1(), SplashIntro2()],
+            ),
+            PageIndicator(
+              tabController: _tabController,
+              currentPageIndex: _currentPageIndex,
+              onUpdateCurrentPageIndex: _updateCurrentPageIndex,
+            ),
+          ],
+        ),
       ),
     );
   }

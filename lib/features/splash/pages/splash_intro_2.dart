@@ -1,7 +1,5 @@
 import 'package:cat_and_dog/features/routers/routers.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'widgets/widgets.dart';
 
@@ -15,16 +13,15 @@ class SplashIntro2 extends StatelessWidget {
       children: [
         // if user image background
         // Positioned.fill(child: child)
-        //background
-        //TODO: check khi màn hình quay ngang
+        // background
+        // TODO: check khi màn hình quay ngang
         Positioned(right: size.width / 8, top: 0, child: Image.asset("assets/intro/ellipse_1.png")),
         Positioned(right: size.width / 1.5, top: size.height / 1.4, child: Image.asset("assets/intro/ellipse_4.png")),
         Positioned(right: 0, bottom: 0, child: Image.asset("assets/intro/ellipse_5.png")),
-        // main
-        Positioned(top: size.height / 12, child: Image.asset("assets/intro/cat.png")),
-        // background
         Positioned(right: size.width / 1.5, top: size.height / 9, child: Image.asset("assets/intro/ellipse_2.png")),
         Positioned(right: size.width / 10, top: size.height / 2, child: Image.asset("assets/intro/ellipse_3.png")),
+        // main
+        Positioned(top: size.height / 12, child: Image.asset("assets/intro/cat.png", width: 360, height: 280)),
 
         //text main
         Positioned(
