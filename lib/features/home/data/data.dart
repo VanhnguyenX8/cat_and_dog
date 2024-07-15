@@ -2,8 +2,8 @@ import 'package:cat_and_dog/features/home/model/model.dart';
 
 // final animalProfileBuilder = AnimalProfileBuilder().setAudio("").setImg("").setTitle("");
 List<Animal> cats = [
-  Animal(title: "Come here", img: "assets/home/cat/item_1.png", audio: "https://cdn.pixabay.com/audio/2022/03/14/audio_65d1725d3d.mp3"),
-  Animal(title: "Lovely", img: "assets/home/cat/item_2.png", audio: "https://cdn.pixabay.com/audio/2022/02/10/audio_d05ec154f4.mp3"),
+  Animal(title: "Come here", img: "assets/home/cat/item_1.png", audio: "assets/audio/cat_1.mp3"),
+  Animal(title: "Lovely", img: "assets/home/cat/item_2.png", audio: "assets/audio/cat_2.mp3"),
   Animal(title: "Call", img: "assets/home/cat/item_3.png", audio: "assets/audio/cat_3.mp3"),
   Animal(title: "Let's play", img: "assets/home/cat/item_4.png", audio: "assets/audio/cat_1.mp3"),
   Animal(title: "Hug", img: "assets/home/cat/item_5.png", audio: "assets/audio/cat_2.mp3"),
@@ -20,8 +20,8 @@ List<Animal> cats = [
 ];
 
 List<Animal> dogs = [
-  Animal(title: "Come here", img: "assets/home/dog/item_1.png", audio: "https://cdn.pixabay.com/audio/2022/03/14/audio_65d1725d3d.mp3"),
-  Animal(title: "Lovely", img: "assets/home/dog/item_2.png", audio: "https://cdn.pixabay.com/audio/2022/02/10/audio_d05ec154f4.mp3"),
+  Animal(title: "Come here", img: "assets/home/dog/item_1.png", audio: "assets/audio/dog_1.mp3"),
+  Animal(title: "Lovely", img: "assets/home/dog/item_2.png", audio: "assets/audio/dog_2.mp3"),
   Animal(title: "Call", img: "assets/home/dog/item_3.png", audio: "assets/audio/dog_3.mp3"),
   Animal(title: "Let's play", img: "assets/home/dog/item_4.png", audio: "assets/audio/dog_1.mp3"),
   Animal(title: "Hug", img: "assets/home/dog/item_5.png", audio: "assets/audio/dog_2.mp3"),

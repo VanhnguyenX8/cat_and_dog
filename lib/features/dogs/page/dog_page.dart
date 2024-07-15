@@ -89,7 +89,7 @@ class _DogPageState extends State<DogPage> with WidgetsBindingObserver {
     }
     player.stop();
 
-    await player.setUrl(audio!);
+    await player.setAsset(audio!);
     player.play();
   }
 

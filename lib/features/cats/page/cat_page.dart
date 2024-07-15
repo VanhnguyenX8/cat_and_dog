@@ -89,7 +89,7 @@ class _CatPageState extends State<CatPage> with WidgetsBindingObserver {
     }
     player.stop();
 
-    await player.setUrl(audio!);
+    await player.setAsset(audio!);
     player.play();
   }
 
