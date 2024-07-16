@@ -1,8 +1,23 @@
+import 'package:cat_and_dog/features/home/pages/home_page.dart';
 import 'package:cat_and_dog/features/splash/pages/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class SplashIntro1 extends StatelessWidget {
-  const SplashIntro1({super.key});
+class SplashIntro1 extends StatefulWidget {
+  final VoidCallback onTap;
+
+  const SplashIntro1({super.key, required this.onTap});
+  @override
+  State<SplashIntro1> createState() => _SplashIntro1State();
+}
+
+class _SplashIntro1State extends State<SplashIntro1> {
+  void gotoCatHome() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+  }
+
+  void gotoDogHome() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(isCatPage: false)));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,37 +54,69 @@ class SplashIntro1 extends StatelessWidget {
         Positioned(
           left: size.width / 9,
           top: size.height / 1.5,
-          // bottom: 0,
-          child: ClipPath(
-            clipper: CustomShapeClipperLert(),
-            child: Container(
-              constraints: const BoxConstraints(maxHeight: 63, maxWidth: 180),
-              padding: const EdgeInsets.fromLTRB(40, 31, 73, 15),
-              decoration: const BoxDecoration(color: Color(0xFFA4AFDC)),
-              child: const Center(
-                child: Text(
-                  'I have a cat',
-                  style: TextStyle(color: Colors.white, fontSize: 12, decoration: TextDecoration.none),
-                ),
+          child: GestureDetector(
+            onTap: widget.onTap,
+            child: SizedBox(
+              width: 220,
+              height: 63,
+              child: Stack(
+                children: [
+                  ClipPath(
+                    clipper: CustomShapeClipperLert(),
+                    child: Container(
+                      constraints: const BoxConstraints(maxHeight: 63, maxWidth: 180),
+                      // padding: const EdgeInsets.fromLTRB(40, 31, 73, 15),
+                      // decoration: const BoxDecoration(color: Color(0xFFA4AFDC)),
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Positioned.fill(child: Image.asset("assets/intro/background_text_1.png", width: 180, height: 63, fit: BoxFit.cover)),
+                          const Positioned(
+                            top: 30,
+                            left: 40,
+                            child: Text('I have a cat', style: TextStyle(color: Colors.white, fontSize: 12, decoration: TextDecoration.none)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Align(alignment: Alignment.topRight, child: Image.asset('assets/intro/image_1_1.png', width: 100, height: 52)),
+                ],
               ),
             ),
           ),
         ),
         Positioned(
-          right: size.width / 9,
+          right: 0,
           top: size.height / 1.3,
           // bottom: 0,
-          child: ClipPath(
-            clipper: CustomShapeClipperRight(),
-            child: Container(
-              constraints: const BoxConstraints(maxHeight: 63, maxWidth: 180),
-              padding: const EdgeInsets.fromLTRB(34, 31, 77, 15),
-              decoration: const BoxDecoration(color: Color(0xFF81CAE7)),
-              child: const Center(
-                child: Text(
-                  'I have a dog',
-                  style: TextStyle(color: Colors.white, fontSize: 12, decoration: TextDecoration.none),
-                ),
+          child: GestureDetector(
+            onTap: widget.onTap,
+            child: SizedBox(
+              width: 220,
+              height: 63,
+              child: Stack(
+                children: [
+                  ClipPath(
+                    clipper: CustomShapeClipperRight(),
+                    child: Container(
+                      constraints: const BoxConstraints(maxHeight: 63, maxWidth: 180),
+                      // padding: const EdgeInsets.fromLTRB(34, 31, 77, 15),
+                      // decoration: const BoxDecoration(color: Color(0xFF81CAE7)),
+                      child: Stack(
+                        children: [
+                          Positioned.fill(child: Image.asset("assets/intro/background_text_2.png", width: 180, height: 63, fit: BoxFit.cover)),
+                          const Positioned(
+                            top: 30,
+                            right: 80,
+                            child: Text('I have a dog', style: TextStyle(color: Colors.white, fontSize: 12, decoration: TextDecoration.none)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(top: 0, right: 50, child: Image.asset('assets/intro/image_1_2.png', width: 53, height: 50)),
+                ],
               ),
             ),
           ),
@@ -78,17 +125,33 @@ class SplashIntro1 extends StatelessWidget {
           left: size.width / 9,
           top: size.height / 1.15,
           // bottom: 0,
-          child: ClipPath(
-            clipper: CustomShapeClipperLert(),
-            child: Container(
-              constraints: const BoxConstraints(maxHeight: 63, maxWidth: 188),
-              padding: const EdgeInsets.fromLTRB(44, 31, 66, 10),
-              decoration: const BoxDecoration(color: Color(0xFFE88570)),
-              child: const Center(
-                child: Text(
-                  'I HAVE BOTH',
-                  style: TextStyle(color: Colors.white, fontSize: 12, decoration: TextDecoration.none),
-                ),
+          child: GestureDetector(
+            onTap: widget.onTap,
+            child: SizedBox(
+              width: 220,
+              height: 63,
+              child: Stack(
+                children: [
+                  ClipPath(
+                    clipper: CustomShapeClipperLert(),
+                    child: Container(
+                      constraints: const BoxConstraints(maxHeight: 63, maxWidth: 188),
+                      // padding: const EdgeInsets.fromLTRB(44, 31, 66, 10),
+                      // decoration: const BoxDecoration(color: Color(0xFFE88570)),
+                      child: Stack(
+                        children: [
+                          Positioned.fill(child: Image.asset("assets/intro/background_text_3.png", width: 180, height: 63, fit: BoxFit.cover)),
+                          const Positioned(
+                            top: 30,
+                            left: 50,
+                            child: Text('I HAVE BOTH', style: TextStyle(color: Colors.white, fontSize: 12, decoration: TextDecoration.none)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Align(alignment: Alignment.topRight, child: Image.asset('assets/intro/image_1_3.png', width: 78, height: 45)),
+                ],
               ),
             ),
           ),

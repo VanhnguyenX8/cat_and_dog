@@ -117,7 +117,7 @@ class _AppState extends State<App> {
     Widget page;
     switch (settings.name) {
       case Routers.root:
-        page = const LandingPage();
+        page = const SplashIntro();
         break;
       case Routers.splash:
         page = const SplashIntro();
@@ -130,7 +130,7 @@ class _AppState extends State<App> {
       case Routers.home:
         page = const HomePage();
       default:
-        page = const SplashPage();
+        page = const SplashIntro();
         break;
     }
     return MaterialPageRoute(settings: settings, builder: (_) => page);

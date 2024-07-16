@@ -40,28 +40,33 @@ class _SplashIntroState extends State<SplashIntro> with TickerProviderStateMixin
         child: Stack(
           children: [
             PageView(
+              physics: const NeverScrollableScrollPhysics(),
               controller: _pageViewController,
               onPageChanged: _handlePageViewChanged,
-              children: const <Widget>[SplashIntro1(), SplashIntro2()],
+              children: <Widget>[SplashIntro1(onTap: goNextPage), const SplashIntro2()],
             ),
-            PageIndicator(
-              tabController: _tabController,
-              currentPageIndex: _currentPageIndex,
-              onUpdateCurrentPageIndex: _updateCurrentPageIndex,
-            ),
+            // PageIndicator(
+            //   tabController: _tabController,
+            //   currentPageIndex: _currentPageIndex,
+            //   onUpdateCurrentPageIndex: _updateCurrentPageIndex,
+            // ),
           ],
         ),
       ),
     );
   }
 
+  void goNextPage() {
+    _pageViewController.nextPage(duration: const Duration(milliseconds: 500), curve: Curves.ease);
+  }
+
   void _handlePageViewChanged(int currentPageIndex) {
-   if(currentPageIndex <= 1 && currentPageIndex >= 0) {
-     _tabController.index = currentPageIndex;
-    setState(() {
-      _currentPageIndex = currentPageIndex;
-    });
-   }
+    if (currentPageIndex <= 1 && currentPageIndex >= 0) {
+      _tabController.index = currentPageIndex;
+      setState(() {
+        _currentPageIndex = currentPageIndex;
+      });
+    }
   }
 
   void _updateCurrentPageIndex(int index) {

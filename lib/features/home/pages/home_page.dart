@@ -12,17 +12,20 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final bool isCatPage;
+  const HomePage({super.key, this.isCatPage = true});
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin {
+  late bool isCatPage;
   late final TabController _tabController;
-  static const List<Widget> _widgetOptions = <Widget>[TranslateHomePage(), CatPage(), DogPage()];
+
+  late List<Widget> _widgetOptions;
   int _selectedIndex = 0;
-  late InterstitialAd _interstitialAd;
+  // late InterstitialAd _interstitialAd;
   bool _isInterstitialAdReady = false;
   void _onItemTapped(int index) {
     setState(() {
@@ -32,6 +35,8 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
 
   @override
   void initState() {
+    isCatPage = widget.isCatPage;
+    _widgetOptions = [TranslateHomePage(isCatPage: isCatPage), const CatPage(), const DogPage()];
     if (context.read<StorageBLoc>().state.isIntro == null) {
       context.read<StorageBLoc>().add(StorageSet());
     }
@@ -51,87 +56,108 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     super.initState();
   }
 
-  void _loadInterstitialAd() {
-    InterstitialAd.load(
-      adUnitId: 'ca-app-pub-3940256099942544/1033173712', // Use your Ad Unit ID
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (InterstitialAd ad) {
-          _interstitialAd = ad;
-          _isInterstitialAdReady = true;
-        },
-        onAdFailedToLoad: (LoadAdError error) {
-          print('InterstitialAd failed to load: $error');
-          _isInterstitialAdReady = false;
-        },
-      ),
-    );
-  }
+  // void _loadInterstitialAd() {
+  //   InterstitialAd.load(
+  //     adUnitId: 'ca-app-pub-3940256099942544/1033173712', // Use your Ad Unit ID
+  //     request: const AdRequest(),
+  //     adLoadCallback: InterstitialAdLoadCallback(
+  //       onAdLoaded: (InterstitialAd ad) {
+  //         _interstitialAd = ad;
+  //         _isInterstitialAdReady = true;
+  //       },
+  //       onAdFailedToLoad: (LoadAdError error) {
+  //         print('InterstitialAd failed to load: $error');
+  //         _isInterstitialAdReady = false;
+  //       },
+  //     ),
+  //   );
+  // }
 
   @override
   void dispose() {
     super.dispose();
-    _interstitialAd.dispose();
+    // _interstitialAd.dispose();
 
     _tabController.dispose();
   }
-
+ Future<bool> _onWillPop(BuildContext context) async {
+    return (await showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Thoát ứng dụng?'),
+        content: const Text('Bạn có chắc chắn thoát khỏi ứng dụng?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Không'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Có'),
+          ),
+        ],
+      ),
+    )) ?? false;
+  }
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
       child: BlocBuilder<AppColorBLoc, AppColorState>(builder: (context, state) {
-        return Scaffold(
-          // backgroundColor: screenCatColor,
-          backgroundColor: state.color,
-          appBar: AppBar(
-            toolbarHeight: 0,
-            systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: state.color),
-            elevation: 0.0,
+        return WillPopScope(
+           onWillPop: () => _onWillPop(context),
+          child: Scaffold(
+            // backgroundColor: screenCatColor,
             backgroundColor: state.color,
-            automaticallyImplyLeading: false,
-          ),
-          body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
-          bottomNavigationBar: Container(
-            margin: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(28),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  spreadRadius: 5,
-                  blurRadius: 10,
-                  offset: const Offset(0, 3),
-                ),
-              ],
+            appBar: AppBar(
+              toolbarHeight: 0,
+              systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: state.color),
+              elevation: 0.0,
+              backgroundColor: state.color,
+              automaticallyImplyLeading: false,
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(28),
-              child: BottomNavigationBar(
-                items: <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset("assets/svg/translate.svg"),
-                    activeIcon: SvgPicture.asset('assets/svg/translate_active.svg'),
-                    label: 'Translate',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset("assets/svg/cat.svg"),
-                    activeIcon: SvgPicture.asset('assets/svg/cat_active.svg'),
-                    label: 'Cat',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: SvgPicture.asset("assets/svg/dog.svg"),
-                    activeIcon: SvgPicture.asset('assets/svg/dog_active.svg'),
-                    label: 'Dog',
+            body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
+            bottomNavigationBar: Container(
+              margin: const EdgeInsets.only(bottom: 30, left: 20, right: 20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(28),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    spreadRadius: 5,
+                    blurRadius: 10,
+                    offset: const Offset(0, 3),
                   ),
                 ],
-                currentIndex: _selectedIndex,
-                selectedItemColor: Colors.black,
-                unselectedItemColor: Colors.black,
-                selectedFontSize: 12,
-                unselectedFontSize: 12,
-                onTap: _onItemTapped,
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(28),
+                child: BottomNavigationBar(
+                  items: <BottomNavigationBarItem>[
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset("assets/svg/translate.svg"),
+                      activeIcon: SvgPicture.asset('assets/svg/translate_active.svg'),
+                      label: 'Translate',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset("assets/svg/cat.svg"),
+                      activeIcon: SvgPicture.asset('assets/svg/cat_active.svg'),
+                      label: 'Cat',
+                    ),
+                    BottomNavigationBarItem(
+                      icon: SvgPicture.asset("assets/svg/dog.svg"),
+                      activeIcon: SvgPicture.asset('assets/svg/dog_active.svg'),
+                      label: 'Dog',
+                    ),
+                  ],
+                  currentIndex: _selectedIndex,
+                  selectedItemColor: Colors.black,
+                  unselectedItemColor: Colors.black,
+                  selectedFontSize: 12,
+                  unselectedFontSize: 12,
+                  onTap: _onItemTapped,
+                ),
               ),
             ),
           ),

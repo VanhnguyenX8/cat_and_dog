@@ -121,13 +121,14 @@ dev_dependencies:
   # flutter_gen: ^5.2.0
   injectable_generator: ^2.6.1
 
-  # flutter_launcher_icons: ^0.13.1
-  flutter_launcher_icons: # waiting ic_launcher_monochrome 0.13.2
-    git:
-      url: https://github.com/fluttercommunity/flutter_launcher_icons
-      ref: master
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.3.8
+  # flutter_launcher_icons: # waiting ic_launcher_monochrome 0.13.2
+  #   git:
+  #     url: https://github.com/fluttercommunity/flutter_launcher_icons
+  #     ref: master
   # Splat view in flutter screen
-  flutter_native_splash: ^2.4.0
+  # flutter_native_splash: ^2.4.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -142,10 +143,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - dev_assets/
     - assets/svg/
     - assets/home/
     - assets/intro/
     - assets/audio/
+    - assets/purchase/
     - assets/home/cat/
     - assets/home/dog/
     - assets/home/translate/

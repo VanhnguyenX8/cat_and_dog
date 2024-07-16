@@ -90,7 +90,7 @@ android {
                 debugSymbolLevel 'FULL' /// get function names, files, and line numbers in the Play Console's symbolicated stack traces
 
                 // Using sqlite3_flutter_libs will include prebuilt binaries for 32-bit x86 devices which you probably won't need.
-                abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64' // flutter current not support x86 https://docs.flutter.dev/deployment/android
+                // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64' // flutter current not support x86 https://docs.flutter.dev/deployment/android
                 // abiFilters 'armeabi-v7a', 'x86_64', 'arm64-v8a', 'x86', 'armeabi', 'mips', 'mips64'
             }
 

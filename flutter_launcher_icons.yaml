@@ -1,29 +1,25 @@
 flutter_icons:
-  image_path: "dev_assets/logo.png"
-  # Note: chplay use logo 512x512 to upload
-  # image_path_android: "dev_assets/logo-512x512.png"
-  image_path_android: "dev_assets/logo-1024x1024.png"
-  image_path_ios: "dev_assets/logo-1024x1024.png"
-
-  #### Android
-  ## android 
-  # true, false, path. This will generate a new launcher icons for the platform with the name you specify, 
-  # without removing the old default existing Flutter launcher icon.
   android: "ic_launcher"
   ios: true
-  ## Removes alpha channel for IOS icons
   remove_alpha_ios: true
-  # background_color_ios: "#ffffff"
 
+  image_path: "dev_assets/logo.png"
+  # image_path_android
+  # image_path_ios
+
+  # The color (E.g. "#ffffff") or image asset (E.g. "assets/images/christmas-background.png")
+  # which will be used to fill out the background of the adaptive icon.
+  adaptive_icon_background: "#000000"
+  # The image asset which will be used for the icon foreground of the adaptive icon
+  # adaptive_icon_foreground
+
+  # min_sdk_android: 21 # android min sdk min:16, default 21
   web:
     generate: true
-    image_path: "dev_assets/logo-1024x1024.png"
+    image_path: "dev_assets/logo.png"
     background_color: "#000000"
     theme_color: "#000000"
   windows:
     generate: true
-    image_path: "dev_assets/logo-1024x1024.png"
-    icon_size: 256 # min:48, max:256, default: 48
-  macos:
-    generate: true
-    image_path: "dev_assets/logo-1024x1024.png"
+    image_path: "dev_assets/logo.png"
+    icon_size: 48 # min:48, max:256, default: 48

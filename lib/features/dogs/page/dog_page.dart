@@ -4,7 +4,6 @@ import 'package:cat_and_dog/features/dogs/dogs.dart';
 import 'package:cat_and_dog/features/home/data/data.dart';
 import 'package:cat_and_dog/features/home/model/model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:just_audio/just_audio.dart';
